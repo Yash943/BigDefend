@@ -1,7 +1,8 @@
 
----
 
 # 🛡️ Big Defend
+
+⚠️ **WARNING: The GUI interface is currently in beta and may exhibit instability. Use with caution in production environments.**
 
 Big Defend is an advanced **Intrusion Detection System (IDS)** powered by **Machine Learning and Real-Time Packet Capture**. It captures live network traffic, trains an anomaly detection model, and monitors threats efficiently. The project comes with a sleek **GUI built using PySide6**.
 
@@ -22,6 +23,7 @@ Big Defend is an advanced **Intrusion Detection System (IDS)** powered by **Mach
 ### 🔹 Step 1: Install Required Dependencies
 
 Ensure you have **Python 3.10+** installed. Download it from [Python's official site](https://www.python.org/downloads/).  
+
 Check the installed Python version:
 ```sh
 python --version
@@ -37,14 +39,13 @@ cd BigDefend
 ### 🔹 Step 3: Install **Npcap** (Required for Packet Sniffing)
 
 Big Defend uses **Scapy**, which requires **Npcap** to capture network packets.
-
 1. Download **Npcap** from the official site: [Npcap Official Page](https://nmap.org/npcap/)
-2. Run the installer and **select** the option:
+2. Run the installer and **select** the option:  
    - ✅ Install Npcap in **WinPcap API-compatible mode**.
 3. Complete the installation and restart your computer.
 
-### 🔹 Step 4: Install **uv**
- 
+### 🔹 Step 4: Install **uv**  
+
 ```sh
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
@@ -52,31 +53,26 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 ## 🎯 Running the Application
 
 ### ✅ Start the GUI
-
 ```sh
 uv run gui.py
 ```
 
 ### ✅ Capture Live Network Traffic
-
 ```sh
 uv run scripts/packet_capture.py
 ```
 
 ### ✅ Train the IDS Model
-
 ```sh
 uv run scripts/train_model.py
 ```
 
 ### ✅ Start IDS Monitoring
-
 ```sh
 uv run scripts/start_ids.py
 ```
 
 ### ✅ Stop IDS Monitoring
-
 ```sh
 uv run scripts/stop_ids.py
 ```
@@ -112,4 +108,3 @@ Want to contribute? Feel free to fork the repo and submit a pull request!
 This project is licensed under the **MIT License**.
 
 ---
-
