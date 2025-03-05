@@ -1,6 +1,7 @@
 import csv
 import os
 import time
+import threading
 from scapy.all import sniff, IP, TCP
 
 CAPTURE_FILE = "captured_data.csv"
@@ -33,16 +34,31 @@ def packet_callback(packet):
             writer = csv.writer(f)
             writer.writerow(features)
 
+def countdown_timer(duration):
+    """Displays a reverse countdown in the terminal."""
+    for remaining in range(duration, 0, -1):
+        print(f"\r⏳ Time remaining: {remaining} seconds", end="", flush=True)
+        time.sleep(1)
+    print("\r✅ Capture completed. Processing data...      ")
+
 def start_packet_capture(duration=60):
-    """Capture live packets for training."""
+    """Capture live packets for a specified duration."""
     print(f"📡 Capturing network traffic for {duration} seconds...")
-    
+
     if not os.path.exists(CAPTURE_FILE):
         with open(CAPTURE_FILE, "w", newline="") as f:
             writer = csv.writer(f)
             writer.writerow(HEADERS)
 
+    # Start countdown timer in a separate thread
+    timer_thread = threading.Thread(target=countdown_timer, args=(duration,))
+    timer_thread.start()
+
+    # Start packet sniffing
     sniff(prn=packet_callback, store=False, timeout=duration)
+
+    # Wait for countdown to finish
+    timer_thread.join()
 
     print(f"✅ Packet capture completed. Data saved in {CAPTURE_FILE}")
 
