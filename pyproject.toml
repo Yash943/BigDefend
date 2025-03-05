@@ -13,4 +13,5 @@ dependencies = [
     "python-nmap>=0.7.1",
     "scapy>=2.6.1",
     "scikit-learn>=1.6.1",
+    "tqdm>=4.67.1",
 ]
