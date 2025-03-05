@@ -1,4 +1,3 @@
-Here's the fixed and improved README file with better clarity, formatting, and corrections.  
 
 ---
 
