@@ -34,12 +34,25 @@ def packet_callback(packet):
             writer = csv.writer(f)
             writer.writerow(features)
 
-def countdown_timer(duration):
-    """Displays a reverse countdown in the terminal."""
-    for remaining in range(duration, 0, -1):
-        print(f"\r⏳ Time remaining: {remaining} seconds", end="", flush=True)
-        time.sleep(1)
-    print("\r✅ Capture completed. Processing data...      ")
+def countdown_timer(duration, stop_event):
+    """Displays a reverse countdown with a progress bar and percentage."""
+    start_time = time.monotonic()
+    bar_length = 30  # Length of the progress bar
+
+    while not stop_event.is_set():
+        elapsed = time.monotonic() - start_time
+        remaining = int(duration - elapsed)
+        if remaining < 0:
+            break
+
+        percent_complete = int((elapsed / duration) * 100)
+        filled_length = int(bar_length * elapsed / duration)
+        bar = '█' * filled_length + '-' * (bar_length - filled_length)
+        # Using carriage return (\r) to update the line in the terminal
+        print(f"\r⏳ Time remaining: {remaining:3d} sec |{bar}| {percent_complete:3d}% ", end="", flush=True)
+        time.sleep(0.5)
+
+    print("\r✅ Capture completed. Processing data...                      ")
 
 def start_packet_capture(duration=60):
     """Capture live packets for a specified duration."""
@@ -50,14 +63,17 @@ def start_packet_capture(duration=60):
             writer = csv.writer(f)
             writer.writerow(HEADERS)
 
+    stop_event = threading.Event()
+    
     # Start countdown timer in a separate thread
-    timer_thread = threading.Thread(target=countdown_timer, args=(duration,))
+    timer_thread = threading.Thread(target=countdown_timer, args=(duration, stop_event))
     timer_thread.start()
 
     # Start packet sniffing
     sniff(prn=packet_callback, store=False, timeout=duration)
 
-    # Wait for countdown to finish
+    # Signal the countdown to stop and wait for the thread to finish
+    stop_event.set()
     timer_thread.join()
 
     print(f"✅ Packet capture completed. Data saved in {CAPTURE_FILE}")
