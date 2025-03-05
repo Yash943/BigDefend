@@ -1769,3 +1769,67 @@
 2025-03-06 01:40:28,562 - INFO - Packet Ether / IP / TCP 20.50.88.238:https > 192.168.1.100:50435 PA / Raw -> Score: 0.1300 -> \u2705 Safe
 2025-03-06 01:40:28,573 - INFO - Packet Ether / IP / TCP 20.50.88.238:https > 192.168.1.100:50435 PA / Raw -> Score: 0.1687 -> \u2705 Safe
 2025-03-06 01:40:28,585 - INFO - Packet Ether / IP / TCP 192.168.1.100:50435 > 20.50.88.238:https A -> Score: 0.1857 -> \u2705 Safe
+2025-03-06 01:44:12,651 - INFO - \u2705 IDS Model Loaded.
+2025-03-06 01:44:18,966 - INFO - Packet Ether / IP / TCP 192.168.1.100:49732 > 155.133.224.22:27036 PA / Raw -> Score: 0.1042 -> \u2705 Safe
+2025-03-06 01:44:19,068 - INFO - Packet Ether / IP / TCP 155.133.224.22:27036 > 192.168.1.100:49732 A -> Score: 0.1048 -> \u2705 Safe
+2025-03-06 01:44:19,521 - INFO - Packet Ether / IP / TCP 192.168.1.100:50455 > 20.50.88.238:https PA / Raw -> Score: 0.1216 -> \u2705 Safe
+2025-03-06 01:44:19,717 - INFO - Packet Ether / IP / TCP 20.50.88.238:https > 192.168.1.100:50455 A -> Score: 0.1910 -> \u2705 Safe
+2025-03-06 01:44:19,761 - INFO - Packet Ether / IP / TCP 20.50.88.238:https > 192.168.1.100:50455 PA / Raw -> Score: 0.1107 -> \u2705 Safe
+2025-03-06 01:44:19,772 - INFO - Packet Ether / IP / TCP 20.50.88.238:https > 192.168.1.100:50455 PA / Raw -> Score: 0.1819 -> \u2705 Safe
+2025-03-06 01:44:19,783 - INFO - Packet Ether / IP / TCP 192.168.1.100:50455 > 20.50.88.238:https A -> Score: 0.1891 -> \u2705 Safe
+2025-03-06 01:48:15,872 - INFO - \u2705 IDS Model Loaded.
+2025-03-06 01:48:19,452 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0138 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:19,464 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0166 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:19,474 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0278 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:19,485 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0158 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:19,496 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0161 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:19,506 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0150 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:19,515 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0227 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:19,526 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0218 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:19,536 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0240 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:19,547 - INFO - Packet Ether / IP / UDP 192.168.1.7:ssdp > 239.255.255.250:ssdp / Raw -> Score: -0.0218 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:25,811 - INFO - Packet Ether / IP / TCP 192.168.1.100:49732 > 155.133.224.22:27036 PA / Raw -> Score: 0.0753 -> \u2705 Safe
+2025-03-06 01:48:25,978 - INFO - Packet Ether / IP / TCP 155.133.224.22:27036 > 192.168.1.100:49732 A -> Score: 0.1212 -> \u2705 Safe
+2025-03-06 01:48:30,271 - INFO - Packet Ether / IP / TCP 192.168.1.100:50493 > 13.107.5.93:https A / Raw -> Score: 0.1157 -> \u2705 Safe
+2025-03-06 01:48:30,584 - INFO - Packet Ether / IP / TCP 192.168.1.100:50494 > 13.107.246.58:https A / Raw -> Score: 0.1896 -> \u2705 Safe
+2025-03-06 01:48:32,289 - INFO - Packet Ether / IP / TCP 192.168.1.100:50497 > 13.67.9.5:https A / Raw -> Score: 0.0624 -> \u2705 Safe
+2025-03-06 01:48:33,001 - INFO - Packet Ether / IP / TCP 192.168.1.100:50498 > 13.107.246.58:https A / Raw -> Score: 0.1896 -> \u2705 Safe
+2025-03-06 01:48:33,768 - INFO - Packet Ether / IP / TCP 13.107.246.58:https > 192.168.1.100:50498 FPA / Raw -> Score: 0.1721 -> \u2705 Safe
+2025-03-06 01:48:33,779 - INFO - Packet Ether / IP / TCP 192.168.1.100:50498 > 13.107.246.58:https A -> Score: 0.1923 -> \u2705 Safe
+2025-03-06 01:48:33,789 - INFO - Packet Ether / IP / TCP 192.168.1.100:50498 > 13.107.246.58:https FA -> Score: 0.1923 -> \u2705 Safe
+2025-03-06 01:48:33,800 - INFO - Packet Ether / IP / TCP 13.107.246.58:https > 192.168.1.100:50498 A -> Score: 0.1928 -> \u2705 Safe
+2025-03-06 01:48:33,926 - INFO - Packet Ether / IP / TCP 13.107.246.58:https > 192.168.1.100:50494 FPA / Raw -> Score: 0.1721 -> \u2705 Safe
+2025-03-06 01:48:33,937 - INFO - Packet Ether / IP / TCP 192.168.1.100:50494 > 13.107.246.58:https A -> Score: 0.1923 -> \u2705 Safe
+2025-03-06 01:48:33,947 - INFO - Packet Ether / IP / TCP 192.168.1.100:50494 > 13.107.246.58:https FA -> Score: 0.1923 -> \u2705 Safe
+2025-03-06 01:48:33,959 - INFO - Packet Ether / IP / TCP 13.107.246.58:https > 192.168.1.100:50494 A -> Score: 0.1929 -> \u2705 Safe
+2025-03-06 01:48:34,257 - INFO - Packet Ether / IP / TCP 192.168.1.100:50499 > 140.82.114.22:https A / Raw -> Score: 0.1711 -> \u2705 Safe
+2025-03-06 01:48:34,335 - INFO - Packet Ether / IP / TCP 192.168.1.100:50502 > 20.189.173.14:https A / Raw -> Score: 0.1864 -> \u2705 Safe
+2025-03-06 01:48:34,569 - INFO - Packet Ether / IP / TCP 140.82.114.22:https > 192.168.1.100:50499 A -> Score: 0.1631 -> \u2705 Safe
+2025-03-06 01:48:34,609 - INFO - Packet Ether / IP / TCP 20.189.173.14:https > 192.168.1.100:50502 A -> Score: 0.1936 -> \u2705 Safe
+2025-03-06 01:48:34,685 - INFO - Packet Ether / IP / TCP 3.214.32.216:https > 192.168.1.100:50528 PA / Raw -> Score: 0.1728 -> \u2705 Safe
+2025-03-06 01:48:34,696 - INFO - Packet Ether / IP / TCP 3.214.32.216:https > 192.168.1.100:50528 FA -> Score: 0.1811 -> \u2705 Safe
+2025-03-06 01:48:34,707 - INFO - Packet Ether / IP / TCP 192.168.1.100:50528 > 3.214.32.216:https A -> Score: 0.1770 -> \u2705 Safe
+2025-03-06 01:48:35,070 - INFO - Packet Ether / IP / TCP 54.196.190.163:https > 192.168.1.100:50525 PA / Raw -> Score: 0.1140 -> \u2705 Safe
+2025-03-06 01:48:35,082 - INFO - Packet Ether / IP / TCP 54.196.190.163:https > 192.168.1.100:50525 FA -> Score: 0.1246 -> \u2705 Safe
+2025-03-06 01:48:35,093 - INFO - Packet Ether / IP / TCP 192.168.1.100:50525 > 54.196.190.163:https A -> Score: 0.1388 -> \u2705 Safe
+2025-03-06 01:48:35,216 - INFO - Packet Ether / IP / TCP 192.168.1.100:50513 > 13.107.42.18:https A / Raw -> Score: 0.0987 -> \u2705 Safe
+2025-03-06 01:48:35,229 - INFO - Packet Ether / IP / TCP 13.107.42.18:https > 192.168.1.100:50513 A -> Score: 0.0889 -> \u2705 Safe
+2025-03-06 01:48:35,293 - INFO - Packet Ether / IP / TCP 192.168.1.100:50517 > 96.17.168.129:https A / Raw -> Score: 0.1866 -> \u2705 Safe
+2025-03-06 01:48:35,308 - INFO - Packet Ether / IP / TCP 96.17.168.129:https > 192.168.1.100:50517 A -> Score: 0.1959 -> \u2705 Safe
+2025-03-06 01:48:36,517 - INFO - Packet Ether / IP / TCP 192.168.1.100:50511 > 96.17.168.129:https A / Raw -> Score: 0.1866 -> \u2705 Safe
+2025-03-06 01:48:36,527 - INFO - Packet Ether / IP / TCP 192.168.1.100:50507 > 13.107.6.175:https A / Raw -> Score: 0.1456 -> \u2705 Safe
+2025-03-06 01:48:36,537 - INFO - Packet Ether / IP / TCP 96.17.168.129:https > 192.168.1.100:50511 A -> Score: 0.1959 -> \u2705 Safe
+2025-03-06 01:48:36,565 - INFO - Packet Ether / IP / TCP 13.107.6.175:https > 192.168.1.100:50507 A -> Score: 0.1393 -> \u2705 Safe
+2025-03-06 01:48:38,471 - INFO - Packet Ether / IP / TCP 192.168.1.100:50501 > 20.189.173.14:https A / Raw -> Score: 0.1864 -> \u2705 Safe
+2025-03-06 01:48:38,753 - INFO - Packet Ether / IP / TCP 20.189.173.14:https > 192.168.1.100:50501 A -> Score: 0.1936 -> \u2705 Safe
+2025-03-06 01:48:41,328 - INFO - Packet Ether / IP / TCP 192.168.1.100:49695 > 44.218.145.20:https PA / Raw -> Score: 0.1890 -> \u2705 Safe
+2025-03-06 01:48:41,613 - INFO - Packet Ether / IP / TCP 44.218.145.20:https > 192.168.1.100:49695 A -> Score: 0.2042 -> \u2705 Safe
+2025-03-06 01:48:44,305 - INFO - Packet Ether / 0.0.0.0 > 224.0.0.1 2 / Raw -> Score: -0.1222 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:44,315 - INFO - Packet Ether / 0.0.0.0 > 224.0.0.1 2 / Raw -> Score: -0.1222 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:50,775 - INFO - Packet Ether / 192.168.1.100 > 224.0.0.252 2 / Raw -> Score: -0.0004 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:50,786 - INFO - Packet Ether / 192.168.1.100 > 239.255.255.250 2 / Raw -> Score: -0.0540 -> \U0001f6a8 Threat Detected!
+2025-03-06 01:48:51,271 - INFO - Packet Ether / 192.168.1.100 > 224.0.0.251 2 / Raw -> Score: 0.0000 -> \u2705 Safe
+2025-03-06 01:48:52,919 - INFO - Packet Ether / IP / TCP 192.168.1.100:49732 > 155.133.224.22:27036 PA / Raw -> Score: 0.0753 -> \u2705 Safe
+2025-03-06 01:48:53,016 - INFO - Packet Ether / IP / TCP 155.133.224.22:27036 > 192.168.1.100:49732 A -> Score: 0.1212 -> \u2705 Safe
+2025-03-06 01:48:55,706 - INFO - Packet Ether / IP / UDP / DNS Qry b'p2p-bom2.discovery.steamserver.net.' -> Score: 0.0900 -> \u2705 Safe
+2025-03-06 01:48:55,717 - INFO - Packet Ether / IP / UDP / DNS Ans 155.133.224.23 -> Score: 0.0874 -> \u2705 Safe
