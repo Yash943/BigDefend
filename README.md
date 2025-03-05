@@ -44,48 +44,42 @@ Big Defend uses **Scapy**, which requires **Npcap** to capture network packets.
    - ✅ Install Npcap in **WinPcap API-compatible mode**.
 3. Complete the installation and restart your computer.
 
-### 🔹 Step 4: Set Up a Virtual Environment
-
-1. **Install uv** (Universal Virtual Environment) for **Windows**:  
+### 🔹 Step 4: Install **uv**
+ 
 ```sh
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
-2. **Activate the Virtual Environment**:
-```sh
-.venv\Scripts\activate
-```
----
 
 ## 🎯 Running the Application
 
 ### ✅ Start the GUI
 
 ```sh
-uv run app/gui.py
+uv run gui.py
 ```
 
 ### ✅ Capture Live Network Traffic
 
 ```sh
-uv run app/packet_capture.py
+uv run scripts/packet_capture.py
 ```
 
 ### ✅ Train the IDS Model
 
 ```sh
-uv run app/train_model.py
+uv run scripts/train_model.py
 ```
 
 ### ✅ Start IDS Monitoring
 
 ```sh
-uv run app/start_ids.py
+uv run scripts/start_ids.py
 ```
 
 ### ✅ Stop IDS Monitoring
 
 ```sh
-uv run app/stop_ids.py
+uv run scripts/stop_ids.py
 ```
 
 ---
