@@ -165,9 +165,10 @@ class Dashboard(QMainWindow):
         self.stop_btn = create_button("Stop Process", "#E74C3C", "#C0392B")
         self.clear_btn = create_button("Clear Console", "#7F8C8D", "#95A5A6")
         
-        button_layout.addWidget(self.ids_btn)
+        
         button_layout.addWidget(self.packet_btn)
         button_layout.addWidget(self.train_btn)
+        button_layout.addWidget(self.ids_btn)
         button_layout.addWidget(self.stop_btn)
         button_layout.addWidget(self.clear_btn)
         
