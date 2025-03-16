@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (
     QPushButton, QPlainTextEdit, QLabel, QSizePolicy, QProgressBar, QMessageBox,
     QFrame, QSpacerItem
 )
-from PySide6.QtCore import QProcess, Qt, QSize, QTimer
+from PySide6.QtCore import QProcess, Qt, QTimer
 from PySide6.QtGui import QPalette, QColor, QFont
 
 class Dashboard(QMainWindow):
@@ -304,7 +304,7 @@ class Dashboard(QMainWindow):
         """Executes the given script in a subprocess and captures its output."""
         # Check if another process is running
         if self.current_process and self.current_process.state() != QProcess.NotRunning:
-            self.append_console(f"⚠️ Another process is already running")
+            self.append_console("⚠️ Another process is already running")
             return
 
         # Construct full script path using the script directory

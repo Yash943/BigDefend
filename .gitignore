@@ -2,3 +2,5 @@ __pycache__/
 captured_data.csv
 model.joblib
 logs
+packets
+models

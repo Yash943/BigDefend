@@ -4,7 +4,7 @@ import time
 import threading
 from scapy.all import sniff, IP, TCP
 
-CAPTURE_FILE = "captured_data.csv"
+CAPTURE_FILE = "packets/captured_packets.csv"
 
 # Define CSV headers
 HEADERS = ["src_ip", "dst_ip", "src_port", "dst_port", "protocol", "packet_size"]

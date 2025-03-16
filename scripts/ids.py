@@ -5,7 +5,7 @@ import logging
 import argparse
 from scapy.all import sniff, IP, TCP
 
-MODEL_FILE = "model.joblib"
+MODEL_FILE = "models/model.joblib"
 LOG_DIR = "logs"
 LOG_FILE = os.path.join(LOG_DIR, "ids.log")
 

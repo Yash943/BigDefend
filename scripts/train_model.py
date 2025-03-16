@@ -123,9 +123,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Train an IsolationForest IDS model using captured network data."
     )
-    parser.add_argument("--data_file", type=str, default="captured_data.csv", 
+    parser.add_argument("--data_file", type=str, default="packets/captured_packets.csv", 
                         help="Path to the CSV data file.")
-    parser.add_argument("--model_file", type=str, default="model.joblib", 
+    parser.add_argument("--model_file", type=str, default="models/model.joblib", 
                         help="Path to save the trained model.")
     parser.add_argument("--total_estimators", type=int, default=100, 
                         help="Total number of trees in the IsolationForest.")
