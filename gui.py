@@ -5,8 +5,8 @@ from PySide6.QtWidgets import (
     QPushButton, QPlainTextEdit, QLabel, QSizePolicy, QProgressBar, QMessageBox,
     QFrame, QSpacerItem
 )
-from PySide6.QtCore import QProcess, Qt, QSize
-from PySide6.QtGui import QPalette, QColor, QFont, QIcon
+from PySide6.QtCore import QProcess, Qt, QSize, QTimer
+from PySide6.QtGui import QPalette, QColor, QFont
 
 class Dashboard(QMainWindow):
     def __init__(self):
@@ -15,8 +15,9 @@ class Dashboard(QMainWindow):
         self.resize(900, 700)
         self.setMinimumSize(800, 600)
         self.processes = {}  # key: process, value: script name
+        self.current_process = None  # Initialize current_process to None
 
-        # Define the base directory for scripts.
+        # Define the base directory for scripts
         self.script_dir = os.path.join(os.getcwd(), "scripts")
         
         # Create scripts directory if it doesn't exist
@@ -63,7 +64,7 @@ class Dashboard(QMainWindow):
         separator.setStyleSheet("background-color: #444444;")
         main_layout.addWidget(separator)
 
-        # Status section with elegant styling
+        # Status section
         status_frame = QFrame()
         status_frame.setStyleSheet("""
             QFrame {
@@ -165,7 +166,6 @@ class Dashboard(QMainWindow):
         self.stop_btn = create_button("Stop Process", "#E74C3C", "#C0392B")
         self.clear_btn = create_button("Clear Console", "#7F8C8D", "#95A5A6")
         
-        
         button_layout.addWidget(self.packet_btn)
         button_layout.addWidget(self.train_btn)
         button_layout.addWidget(self.ids_btn)
@@ -246,9 +246,6 @@ class Dashboard(QMainWindow):
         self.stop_btn.clicked.connect(self.stop_current_process)
         self.clear_btn.clicked.connect(self.console.clear)
 
-        # Variable to track current running process
-        self.current_process = None
-        
         # Initial state of stop button
         self.stop_btn.setEnabled(False)
         
@@ -256,6 +253,11 @@ class Dashboard(QMainWindow):
         self.append_console("🛡️ Big Defend Hybrid IDS initialized")
         self.append_console("🔒 Ready to monitor and protect your network")
         self.append_console("📊 Select an option to begin...\n")
+
+        # Cleanup timer
+        self.cleanup_timer = QTimer()
+        self.cleanup_timer.timeout.connect(self.cleanup_processes)
+        self.cleanup_timer.start(1000)  # Check every second
 
     def setup_style(self):
         """Set up modern dark theme with gradient"""
@@ -299,10 +301,13 @@ class Dashboard(QMainWindow):
         """)
 
     def run_script(self, script_name):
-        """
-        Executes the given script in a subprocess and captures its output.
-        """
-        # Construct full script path using the script directory.
+        """Executes the given script in a subprocess and captures its output."""
+        # Check if another process is running
+        if self.current_process and self.current_process.state() != QProcess.NotRunning:
+            self.append_console(f"⚠️ Another process is already running")
+            return
+
+        # Construct full script path using the script directory
         script_path = os.path.join(self.script_dir, script_name)
         if not os.path.exists(script_path):
             self.append_console(f"❌ Script not found: {script_path}\n")
@@ -313,12 +318,11 @@ class Dashboard(QMainWindow):
         process.setProcessChannelMode(QProcess.MergedChannels)
 
         # Connect signals to capture output and status
-        process.readyRead.connect(lambda proc=process: self.handle_output(proc))
-        process.started.connect(lambda: self.on_process_started(script_name, process))
-        process.finished.connect(lambda exitCode, exitStatus, proc=process: 
-                               self.on_process_finished(script_name, exitCode, exitStatus, proc))
-        process.errorOccurred.connect(lambda error, name=script_name: 
-                                   self.on_process_error(error, name))
+        process.readyRead.connect(lambda: self.handle_output(process))
+        process.started.connect(lambda: self.on_process_started(script_name))
+        process.finished.connect(lambda exitCode, exitStatus: 
+                               self.on_process_finished(script_name, exitCode, exitStatus))
+        process.errorOccurred.connect(lambda error: self.on_process_error(error, script_name))
 
         # Start the process using the same Python interpreter
         python_executable = sys.executable
@@ -328,7 +332,7 @@ class Dashboard(QMainWindow):
         self.current_process = process
         self.processes[process] = script_name
 
-    def on_process_started(self, script_name, process):
+    def on_process_started(self, script_name):
         self.append_console(f"🚀 Starting {script_name}...")
         self.status_label.setText(f"Running: {script_name}")
         self.status_label.setStyleSheet("font-size: 14px; color: #4C9EE8; padding: 5px;")
@@ -341,17 +345,14 @@ class Dashboard(QMainWindow):
         self.train_btn.setEnabled(False)
 
     def handle_output(self, process):
-        """
-        Reads output from the process and appends it to the console.
-        """
-        output = process.readAll().data().decode("utf-8", errors="replace")
-        if output:
-            self.append_console(output)
+        """Reads output from the process and appends it to the console."""
+        if process.state() == QProcess.Running:
+            output = process.readAll().data().decode("utf-8", errors="replace")
+            if output:
+                self.append_console(output)
 
     def on_process_error(self, error, script_name):
-        """
-        Handles process errors
-        """
+        """Handles process errors"""
         error_messages = {
             QProcess.FailedToStart: "The process failed to start.",
             QProcess.Crashed: "The process crashed.",
@@ -373,7 +374,7 @@ class Dashboard(QMainWindow):
         self.packet_btn.setEnabled(True)
         self.train_btn.setEnabled(True)
 
-    def on_process_finished(self, script_name, exitCode, exitStatus, process):
+    def on_process_finished(self, script_name, exitCode, exitStatus):
         if exitStatus == QProcess.NormalExit:
             self.append_console(f"✅ {script_name} finished with exit code {exitCode}")
             self.status_label.setText("Idle")
@@ -390,18 +391,10 @@ class Dashboard(QMainWindow):
         self.ids_btn.setEnabled(True)
         self.packet_btn.setEnabled(True)
         self.train_btn.setEnabled(True)
-        
-        # Clean up the process reference
-        if process in self.processes:
-            del self.processes[process]
-        if self.current_process == process:
-            self.current_process = None
 
     def stop_current_process(self):
-        """
-        Stops the currently running process if any.
-        """
-        if self.current_process is not None and self.current_process.state() != QProcess.NotRunning:
+        """Stops the currently running process if any."""
+        if self.current_process and self.current_process.state() != QProcess.NotRunning:
             script_name = self.processes.get(self.current_process, "Unknown process")
             self.append_console(f"⛔ Terminating {script_name}...")
             
@@ -426,9 +419,7 @@ class Dashboard(QMainWindow):
             QMessageBox.information(self, "No Process Running", "There is no active process to stop.")
 
     def append_console(self, text):
-        """
-        Append text to the console widget with timestamp and scroll to the bottom.
-        """
+        """Append text to the console widget with timestamp and scroll to the bottom."""
         from datetime import datetime
         
         timestamp = datetime.now().strftime("%H:%M:%S")
@@ -437,11 +428,18 @@ class Dashboard(QMainWindow):
         # Ensure the latest output is visible
         self.console.verticalScrollBar().setValue(self.console.verticalScrollBar().maximum())
 
+    def cleanup_processes(self):
+        """Clean up finished processes"""
+        for process in list(self.processes.keys()):
+            if process.state() == QProcess.NotRunning:
+                process.deleteLater()
+                del self.processes[process]
+                if self.current_process == process:
+                    self.current_process = None
+
     def closeEvent(self, event):
-        """
-        Handle application close event - terminate any running processes
-        """
-        if self.current_process is not None and self.current_process.state() != QProcess.NotRunning:
+        """Handle application close event - terminate any running processes"""
+        if self.current_process and self.current_process.state() != QProcess.NotRunning:
             dialog = QMessageBox(self)
             dialog.setWindowTitle("Confirm Exit")
             dialog.setText("A script is still running.")
@@ -477,12 +475,15 @@ class Dashboard(QMainWindow):
                 for process in list(self.processes.keys()):
                     if process.state() != QProcess.NotRunning:
                         process.kill()
+                        process.waitForFinished(1000)
                 event.accept()
             else:
                 event.ignore()
         else:
             event.accept()
 
+        # Stop the cleanup timer
+        self.cleanup_timer.stop()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
