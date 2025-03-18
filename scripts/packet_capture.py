@@ -2,11 +2,16 @@ import csv
 import os
 import time
 import threading
+import sys
 from scapy.all import sniff, IP, TCP
 
-CAPTURE_FILE = "packets/captured_packets.csv"
+# Ensure UTF-8 encoding for Windows compatibility
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except AttributeError:
+    pass  # Fallback for older Python versions
 
-# Define CSV headers
+CAPTURE_FILE = "packets/captured_packets.csv"
 HEADERS = ["src_ip", "dst_ip", "src_port", "dst_port", "protocol", "packet_size"]
 
 def extract_features(packet):
@@ -48,15 +53,15 @@ def countdown_timer(duration, stop_event):
         percent_complete = int((elapsed / duration) * 100)
         filled_length = int(bar_length * elapsed / duration)
         bar = '█' * filled_length + '-' * (bar_length - filled_length)
-        # Using carriage return (\r) to update the line in the terminal
+        
         print(f"\r⏳ Time remaining: {remaining:3d} sec |{bar}| {percent_complete:3d}% ", end="", flush=True)
         time.sleep(0.5)
 
-    print("\r✅ Capture completed. Processing data...                      ")
+    print("\r✔️ Capture completed. Processing data...")
 
 def start_packet_capture(duration=60):
     """Capture live packets for a specified duration."""
-    print(f"📡 Capturing network traffic for {duration} seconds...")
+    print(f"🌐 Capturing network traffic for {duration} seconds...")
 
     if not os.path.exists(CAPTURE_FILE):
         with open(CAPTURE_FILE, "w", newline="") as f:
@@ -76,7 +81,7 @@ def start_packet_capture(duration=60):
     stop_event.set()
     timer_thread.join()
 
-    print(f"✅ Packet capture completed. Data saved in {CAPTURE_FILE}")
+    print(f"✔️ Packet capture completed. Data saved in {CAPTURE_FILE}")
 
 if __name__ == "__main__":
     start_packet_capture(120)  # Captures packets for 2 minutes
